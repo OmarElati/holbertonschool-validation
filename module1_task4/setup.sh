@@ -12,3 +12,14 @@ if command -v hugo >/dev/null 2>&1 && command -v make >/dev/null 2>&1; then
 else
   echo "SETUPERROR"
 fi
+
+# Run the build command
+make build
+
+# Verify if the website was generated successfully
+if [ -d "dist" ]; then
+  echo "GENERATIONOK"
+else
+  echo "GENERATIONERROR"
+  exit 1
+fi
