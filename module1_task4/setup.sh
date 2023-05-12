@@ -14,12 +14,6 @@ if ! command -v hugo >/dev/null 2>&1; then
     rm hugo.deb
 fi
 
-# Clone the project repository
-git clone https://github.com/OmarElati/holbertonschool-validation.git
-
-# Navigate to the project directory
-cd holbertonschool-validation
-
 # Install Make if not already installed
 apt-get update
 apt-get install -y make
@@ -29,8 +23,8 @@ make build
 
 # Verify the presence of the generated website
 if [ -f ./dist/index.html ]; then
-    echo "Website generated successfully."
+    echo "SETUPOK: Website generated successfully."
 else
-    echo "Error: Website generation failed."
+    echo "SETUPERROR: Website generation failed."
     exit 1
 fi
