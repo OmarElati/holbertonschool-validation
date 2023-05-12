@@ -21,6 +21,10 @@ The project follows the following steps for building and managing the website:
 7. Clean the build: Use the `make clean` command to remove the `dist/` directory and any generated files.
 8. Deploy the website: Deploy the generated `dist/` directory to your web server or hosting platform.
 
+- Build the website: Run `make build` to generate the website in the `dist` directory.
+- Clean the dist directory: Run `make clean` to remove the contents of the `dist` directory.
+- Create a new blog post: Run `make post POST_NAME=<post_name> POST_TITLE=<post_title>` to create a new blog post with the specified name and title.
+
 ## Usage
 
 To build and manage the website, you can use the following Makefile targets:
