@@ -9,6 +9,6 @@ post: ## Create a new blog post with randomly generated values
 	echo "---\ntitle: $(POST_TITLE)\ndate: $$(date +"%Y-%m-%dT%H:%M:%S")\ndraft: false\n---\n" >> ./content/posts/$(POST_NAME).md
 
 help: ## Show the list of targets and their usage
-    @echo "Usage: make [target]"
-    @echo "Targets:"
-    @grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
+	@echo "Usage: make [target]"
+	@echo "Targets:"
+	@awk -F '[:#]' '/^[a-zA-Z_-]+:.*?##/ { printf "\033[36m%-15s\033[0m %s\n", $$1, $$3 }' $(MAKEFILE_LIST)
