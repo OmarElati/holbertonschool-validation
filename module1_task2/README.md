@@ -6,7 +6,8 @@ This repository contains a website project built with Go-Hugo and Make.
 
 Before building the website, make sure you have the following requirements:
 
-- Go-Hugo: The website is built using Go-Hugo, a static site generator. Make sure Go-Hugo is installed on your system.
+- Go-Hugo: The website is built using Go-Hugo, a static site generator.Make sure Go-Hugo is installed on your system.
+- Make
 
 ## Lifecycle
 
