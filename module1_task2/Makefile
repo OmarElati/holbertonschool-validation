@@ -1,4 +1,4 @@
-build:## Build the website
+build: ## Build the website
 	hugo --source ./ --destination ./dist/
 
 clean: ## Clean the dist directory
