@@ -30,7 +30,6 @@ make build
 # Verify the presence of the generated website
 if [ -f ./dist/index.html ]; then
     echo "Website generated successfully."
-    echo "SETUPOK"
 else
     echo "Error: Website generation failed."
     exit 1
