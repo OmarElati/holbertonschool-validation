@@ -5,5 +5,8 @@ clean:
 	rm -rf ./dist/*
 
 post:
-	hugo new posts/$(POST_NAME).md
-	echo "---\ntitle: $(POST_TITLE) ./content/posts/$(POST_NAME).md
+	POST_NAME=$$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 2 | head -n 1); \
+	POST_TITLE=$$POST_NAME; \
+	hugo new posts/$$POST_NAME.md; \
+	echo "---\ntitle: $$POST_TITLE\ndate: $$(date +"%Y-%m-%dT%H:%M:%S")\ndraft: true\n---\n" >> ./content/posts/$$POST_NAME.md
+
