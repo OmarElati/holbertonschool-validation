@@ -1,5 +1,5 @@
 build:
-	hugo --source ./ --destination ./dist/
+	hugo --source . -d ./dist/
 
 clean:
 	rm -rf ./dist/*
