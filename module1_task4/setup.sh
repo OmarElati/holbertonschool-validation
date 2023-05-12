@@ -2,20 +2,29 @@
 
 set -e
 
-# Update the package lists
-apt-get update
+# Check if Hugo is already installed
+if ! command -v hugo >/dev/null 2>&1; then
+    # Update the package lists
+    apt-get update
 
-# Install required packages
-apt-get install -y hugo make
+    # Install Hugo
+    apt-get install -y hugo
+fi
 
-# Run the build command
-make build
+# Check if Make is already installed
+if ! command -v make >/dev/null 2>&1; then
+    # Install Make
+    apt-get install -y make
+fi
 
 # Clone the project repository
 git clone https://github.com/OmarElati/holbertonschool-validation.git
 
 # Navigate to the project directory
 cd holbertonschool-validation
+
+# Build the website using Make
+make build
 
 # Verify the presence of the generated website
 if [ -f ./dist/index.html ]; then
