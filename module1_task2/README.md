@@ -14,6 +14,7 @@ Before building the website, make sure you have the following requirements:
 - Build the website: Run `make build` to generate the website in the `dist` directory.
 - Clean the dist directory: Run `make clean` to remove the contents of the `dist` directory.
 - Create a new blog post: Run `make post POST_NAME=<post_name> POST_TITLE=<post_title>` to create a new blog post with the specified name and title.
+- Show available targets and their usage: help
 
 ## Usage
 
