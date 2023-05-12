@@ -11,13 +11,14 @@ if command -v hugo >/dev/null 2>&1 && command -v make >/dev/null 2>&1; then
   echo "SETUPOK"
 else
   echo "SETUPERROR"
+  exit 1
 fi
 
 # Run the build command
 make build
 
 # Verify if the website was generated successfully
-if [ -d "dist" ]; then
+if [ -f "dist/index.html" ]; then
   echo "GENERATIONOK"
 else
   echo "GENERATIONERROR"
