@@ -4,17 +4,14 @@ set -e
 
 # Check if Hugo is already installed
 if ! command -v hugo >/dev/null 2>&1; then
-    # Update the package lists
-    apt-get update
+    # Download Hugo
+    HUGO_VERSION=0.88.1
+    wget -q "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb" -O hugo.deb
 
     # Install Hugo
-    apt-get install -y hugo
-fi
-
-# Check if Make is already installed
-if ! command -v make >/dev/null 2>&1; then
-    # Install Make
-    apt-get install -y make
+    dpkg -i hugo.deb
+    apt-get install -f -y
+    rm hugo.deb
 fi
 
 # Clone the project repository
@@ -22,6 +19,10 @@ git clone https://github.com/OmarElati/holbertonschool-validation.git
 
 # Navigate to the project directory
 cd holbertonschool-validation
+
+# Install Make if not already installed
+apt-get update
+apt-get install -y make
 
 # Build the website using Make
 make build
