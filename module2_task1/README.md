@@ -20,7 +20,7 @@ This HTTP webserver is expected to listen to incoming HTTP requests on localhost
 - `build`: Compile the source code of the application.
 - `run`: Run the application in the background.
 - `stop`: Stop the running application.
-- `clean`: Remove build artifacts.
+- `clean`: Clean up the application.
 - `test`: Test the application.
 - `help`: Display this help message.
 - `lint`: Lint target.
