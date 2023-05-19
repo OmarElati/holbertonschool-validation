@@ -1,13 +1,13 @@
 BINARY_NAME := awesome-api
 LOG_FILE := awesome-api.log
 
-build: lint ## Compile the source code of the application
+build: lint # Compile the source code of the application
 	go build -o $(BINARY_NAME)
 
-run: ## Run the application in the background
+run: # Run the application in the background
 	./$(BINARY_NAME) > $(LOG_FILE) 2>&1 &
 
-stop: ## Stop the running application
+stop: # Stop the running application
 	-pkill -f $(BINARY_NAME)
 	sleep 1
 	-pgrep -f $(BINARY_NAME) | xargs -r kill -9
@@ -15,7 +15,7 @@ stop: ## Stop the running application
 clean: stop ## Clean up the application
 	-rm -f $(BINARY_NAME) $(LOG_FILE)
 
-test: ## Test the application
+test: # Test the application
 	@./awesome-api > awesome-api.log 2>&1 & echo $$! > awesome-api.pid; \
 	sleep 1; \
 	if ! curl -s http://localhost:9999 | grep -q "404"; then \
@@ -33,10 +33,15 @@ test: ## Test the application
 	kill `cat awesome-api.pid` || true; \
 	rm -f awesome-api.pid
 
-lint: ## Lint target
+lint: # Lint target
 	golangci-lint run
 
-help: ## Display help information
-	@echo "Usage: make [target]"
-	@echo "Targets:"
-	@awk -F '[:#]' '/^[a-zA-Z_-]+:.*?##/ { printf "\033[36m%-15s\033[0m %s\n", $$1, $$3 }' $(MAKEFILE_LIST)
+help: # Display help information
+	@echo "Available targets:"
+	@echo "  build    : Compile the source code of the application"
+	@echo "  run      : Run the application in the background"
+	@echo "  stop     : Stop the running application"
+	@echo "  clean    : Clean up the application"
+	@echo "  test     : Test the application"
+	@echo "  help     : Display help information"
+	@echo "  lint     : Lint target"
