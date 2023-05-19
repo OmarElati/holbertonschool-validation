@@ -18,13 +18,13 @@ clean: stop # Clean up the application by stopping it, deleting the binary, and 
 test: # Test the application by making requests to the server
 	@./$(BINARY_NAME) > $(LOG_FILE) 2>&1 & echo $$! > $(BINARY_NAME).pid; \
 	sleep 1; \
-	if ! curl -s http://localhost:9999 | grep -q "404"; then \
+	if curl -s http://localhost:9999 | grep -q "404"; then \
 		echo "TESTFAILED: Application is not running"; \
 		kill `cat $(BINARY_NAME).pid` 2>/dev/null || true; \
 		rm -f $(BINARY_NAME).pid; \
 		exit 1; \
 	fi; \
-	if ! curl -s http://localhost:9999/health | grep -q "ALIVE"; then \
+	if curl -s http://localhost:9999/health | grep -q "ALIVE"; then \
 		echo "TESTFAILED: Application is not running"; \
 		kill `cat $(BINARY_NAME).pid` 2>/dev/null || true; \
 		rm -f $(BINARY_NAME).pid; \
