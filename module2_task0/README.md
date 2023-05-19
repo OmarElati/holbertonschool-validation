@@ -23,7 +23,7 @@ Before building the website, make sure you have the following requirements:
 4. Clean up the project: `make clean`
 5. Test the project: `make test`
 
-## Makefile Targets
+## Lifecycle
 
 - `build`: Compile the source code of the application.
 - `run`: Run the application in the background.
