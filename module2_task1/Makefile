@@ -33,7 +33,7 @@ test: # Test the application by making requests to the server
 	kill `cat awesome-api.pid` || true; \
 	rm -f awesome-api.pid
 
-lint:
+lint: # Lint target
 	golangci-lint run
 
 help: # Display help information

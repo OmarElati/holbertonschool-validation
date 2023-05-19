@@ -23,3 +23,4 @@ This HTTP webserver is expected to listen to incoming HTTP requests on localhost
 - `clean`: Remove build artifacts.
 - `test`: Test the application.
 - `help`: Display this help message.
+- `lint`: Lint target.
