@@ -29,8 +29,9 @@ test: # Test the application by making requests to the server
 		kill `cat $(BINARY_NAME).pid`; \
 		rm -f $(BINARY_NAME).pid; \
 		exit 1; \
+	else \
+		echo "TESTOK"; \
 	fi; \
-	echo "TESTOK"; \
 	kill `cat $(BINARY_NAME).pid`; \
 	rm -f $(BINARY_NAME).pid
 
