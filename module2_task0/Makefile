@@ -20,28 +20,22 @@ test: # Test the application by making requests to the server
 	sleep 1; \
 	if curl -s http://localhost:9999 | grep -q "404"; then \
 		echo "TESTFAILED: Application is not running"; \
-		if [ -f "awesome-api.pid" ]; then \
-			kill `cat awesome-api.pid`; \
-			rm -f awesome-api.pid; \
-		fi; \
+		kill `cat awesome-api.pid`; \
+		rm -f awesome-api.pid; \
 		exit 1; \
 	else \
 		echo "TESTOK"; \
 	fi; \
 	if curl -s http://localhost:9999/health | grep -q "ALIVE"; then \
 		echo "TESTFAILED: Application is not running"; \
-		if [ -f "awesome-api.pid" ]; then \
-			kill `cat awesome-api.pid`; \
-			rm -f awesome-api.pid; \
-		fi; \
+		kill `cat awesome-api.pid`; \
+		rm -f awesome-api.pid; \
 		exit 1; \
 	else \
 		echo "TESTOK"; \
 	fi; \
-	if [ -f "awesome-api.pid" ]; then \
-		kill `cat awesome-api.pid`; \
-		rm -f awesome-api.pid; \
-	fi
+	kill `cat awesome-api.pid`; \
+	rm -f awesome-api.pid
 
 help: # Display help information
 	@echo "Available targets:"
