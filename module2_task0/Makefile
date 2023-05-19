@@ -16,23 +16,26 @@ clean: stop # Clean up the application by stopping it, deleting the binary, and 
 	-rm -f $(BINARY_NAME) $(LOG_FILE)
 
 test: # Test the application by making requests to the server
-	@./$(BINARY_NAME) > $(LOG_FILE) 2>&1 & echo $$! > $(BINARY_NAME).pid; \
+	@./awesome-api > awesome-api.log 2>&1 & echo $$! > awesome-api.pid; \
 	sleep 1; \
 	if curl -s http://localhost:9999 | grep -q "404"; then \
 		echo "TESTFAILED: Application is not running"; \
-		kill `cat $(BINARY_NAME).pid` 2>/dev/null || true; \
-		rm -f $(BINARY_NAME).pid; \
+		kill `cat awesome-api.pid`; \
+		rm -f awesome-api.pid; \
 		exit 1; \
+	else \
+		echo "TESTOK"; \
 	fi; \
 	if curl -s http://localhost:9999/health | grep -q "ALIVE"; then \
+		echo "TESTOK"; \
+	else \
 		echo "TESTFAILED: Application is not running"; \
-		kill `cat $(BINARY_NAME).pid` 2>/dev/null || true; \
-		rm -f $(BINARY_NAME).pid; \
+		kill `cat awesome-api.pid`; \
+		rm -f awesome-api.pid; \
 		exit 1; \
 	fi; \
-	echo "TESTOK"; \
-	kill `cat $(BINARY_NAME).pid` 2>/dev/null || true; \
-	rm -f $(BINARY_NAME).pid
+	kill `cat awesome-api.pid`; \
+	rm -f awesome-api.pid
 
 help: # Display help information
 	@echo "Available targets:"
