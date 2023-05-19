@@ -8,11 +8,9 @@ run: # Run the application in the background and write logs to a file
 	./awesome-api > awesome-api.log 2>&1 &
 
 stop: # Stop the application by killing the process
-	@if [ -f awesome-api.pid ]; then \
-		pid=$$(cat awesome-api.pid); \
-		kill $${pid} || true; \
-		rm -f awesome-api.pid; \
-	fi
+	-pkill -f awesome-api
+	sleep 1
+	-pgrep -f awesome-api | xargs -r kill -9
 
 clean: # Clean up the application by stopping it, deleting the binary, and log file
 	rm -f awesome-api awesome-api.log
