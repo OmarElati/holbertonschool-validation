@@ -8,14 +8,23 @@ This HTTP webserver is expected to listen to incoming HTTP requests on localhost
     If a request hits the path / (e.g. http://localhost:9999/ or http://localhost:9999) then you expect a 404 Not Found (the homepage is not implemented in this task)
     If a request hits the path /health (e.g. http://localhost:9999/health) then you expect the server to answer ALIVE if it is up and running
 
+## Prerequisites
+
+Before building the website, make sure you have the following requirements:
+
+- Go-Hugo installed
+- Make utility installed
+- golangci-lint installed
+
 ## Usage
 1. Build the project: `make build`
 2. Run the project: `make run`
 3. Stop the project: `make stop`
 4. Clean up the project: `make clean`
 5. Test the project: `make test`
+6. Lint the project: `make lint`
 
-## Makefile Targets
+## Lifecycle
 
 - `build`: Compile the source code of the application.
 - `run`: Run the application in the background.
