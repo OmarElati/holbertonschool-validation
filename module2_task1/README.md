@@ -21,6 +21,6 @@ This HTTP webserver is expected to listen to incoming HTTP requests on localhost
 - `build`: Compile the source code of the application.
 - `run`: Run the application in the background.
 - `stop`: Stop the running application.
-- `clean`: Clean up the application.
+- `clean`: Remove build artifacts.
 - `test`: Test the application.
 - `help`: Display this help message.
