@@ -36,9 +36,9 @@ test: # Test the application by making requests to the server
 
 help: # Display help information
 	@echo "Available targets:"
-	@echo "  build    - Compile the source code of the application"
-	@echo "  run      - Run the application in the background"
-	@echo "  stop     - Stop the running application"
-	@echo "  clean    - Clean up the application"
-	@echo "  test     - Test the application"
-	@echo "  help     - Display this help message"
+	@echo "  build    : Compile the source code of the application"
+	@echo "  run      : Run the application in the background"
+	@echo "  stop     : Stop the running application"
+	@echo "  clean    : Clean up the application"
+	@echo "  test     : Test the application"
+	@echo "  help     : Display this help message"
