@@ -30,7 +30,7 @@ test: # Test the application by making requests to the server
 		rm -f $(BINARY_NAME).pid; \
 		exit 1; \
 	else \
-		echo "TESTOK"; \
+		echo "404"; \
 	fi; \
 	kill `cat $(BINARY_NAME).pid`; \
 	rm -f $(BINARY_NAME).pid
