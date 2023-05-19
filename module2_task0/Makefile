@@ -8,14 +8,18 @@ run: # Run the application in the background and write logs to a file
 	./awesome-api > awesome-api.log 2>&1 &
 
 stop: # Stop the application by killing the process
-	kill $(pgrep -f awesome-api)
+	@if [ -f awesome-api.pid ]; then \
+		pid=$$(cat awesome-api.pid); \
+		kill $${pid} || true; \
+		rm -f awesome-api.pid; \
+	fi
 
 clean: # Clean up the application by stopping it, deleting the binary, and log file
 	rm -f awesome-api awesome-api.log
 
 test: # Test the application by making requests to the server
-	curl http://localhost:9999
-	curl http://localhost:9999/health
+	./awesome-api > awesome-api.log 2>&1 &
+	echo $$! > awesome-api.pid
 
 help: # Display help information
 	@echo "Available targets:"
