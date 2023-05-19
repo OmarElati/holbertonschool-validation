@@ -12,7 +12,7 @@ stop: # Stop the application by killing the process
 	sleep 1
 	-pgrep -f $(BINARY_NAME) | xargs -r kill -9
 
-clean: stop # Clean up the application by stopping it, deleting the binary, and log file
+clean: stop # Clean up the application
 	-rm -f $(BINARY_NAME) $(LOG_FILE)
 
 test: # Test the application by making requests to the server
