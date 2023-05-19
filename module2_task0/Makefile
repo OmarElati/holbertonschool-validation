@@ -16,8 +16,32 @@ clean: # Clean up the application by stopping it, deleting the binary, and log f
 	rm -f awesome-api awesome-api.log
 
 test: # Test the application by making requests to the server
-	./awesome-api > awesome-api.log 2>&1 &
-	echo $$! > awesome-api.pid
+	@./awesome-api > awesome-api.log 2>&1 & echo $$! > awesome-api.pid; \
+	sleep 1; \
+	if curl -s http://localhost:9999 | grep -q "404"; then \
+		echo "TESTFAILED: Application is not running"; \
+		if [ -f "awesome-api.pid" ]; then \
+			kill `cat awesome-api.pid`; \
+			rm -f awesome-api.pid; \
+		fi; \
+		exit 1; \
+	else \
+		echo "TESTOK"; \
+	fi; \
+	if curl -s http://localhost:9999/health | grep -q "ALIVE"; then \
+		echo "TESTFAILED: Application is not running"; \
+		if [ -f "awesome-api.pid" ]; then \
+			kill `cat awesome-api.pid`; \
+			rm -f awesome-api.pid; \
+		fi; \
+		exit 1; \
+	else \
+		echo "TESTOK"; \
+	fi; \
+	if [ -f "awesome-api.pid" ]; then \
+		kill `cat awesome-api.pid`; \
+		rm -f awesome-api.pid; \
+	fi
 
 help: # Display help information
 	@echo "Available targets:"
