@@ -18,22 +18,20 @@ clean: stop # Clean up the application by stopping it, deleting the binary, and 
 test: # Test the application by making requests to the server
 	@./awesome-api > awesome-api.log 2>&1 & echo $$! > awesome-api.pid; \
 	sleep 1; \
-	if curl -s http://localhost:9999 | grep -q "404"; then \
+	if ! curl -s http://localhost:9999 | grep -q "404"; then \
 		echo "TESTFAILED: Application is not running"; \
 		kill `cat awesome-api.pid` || true; \
 		rm -f awesome-api.pid; \
 		exit 1; \
 	fi; \
-	if curl -s http://localhost:9999/health | grep -q "ALIVE"; then \
+	if ! curl -s http://localhost:9999/health | grep -q "ALIVE"; then \
 		echo "TESTFAILED: Application is not running"; \
 		kill `cat awesome-api.pid` || true; \
 		rm -f awesome-api.pid; \
 		exit 1; \
 	fi; \
 	kill `cat awesome-api.pid` || true; \
-	rm -f awesome-api.pid; \
-	echo "TESTOK"; \
-	exit 0
+	rm -f awesome-api.pid
 
 help: # Display help information
 	@echo "Available targets:"
