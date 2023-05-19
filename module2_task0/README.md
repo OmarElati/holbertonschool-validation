@@ -7,32 +7,17 @@ This is a documentation for the My Awesome API.
 
 - Go 1.15 or higher
 
-## Build
+## Usage
+1. Build the project: `make build`
+2. Run the project: `make run`
+3. Stop the project: `make stop`
+4. Clean up the project: `make clean`
+5. Test the project: `make test`
 
-To build the application, run the following command:
-```make build```
+## Makefile Targets
 
-## Run
-
-To run the application, use the following command:
-```make run```
-
-## Stop
-
-To stop the running application, execute the following command:
-```make stop```
-
-## Clean
-
-To clean up the application, including stopping it and deleting generated files, run the following command:
-```make clean```
-
-## Test
-
-To test the application, use the following command:
-```make test```
-
-## Help
-
-to Display help information, use the command:
-```make help```
+- `build`: Compile the source code of the application.
+- `run`: Run the application in the background.
+- `stop`: Stop the running application.
+- `clean`: Clean up the application by stopping it, deleting the binary and log file.
+- `test`: Test the application.
