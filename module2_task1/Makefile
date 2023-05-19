@@ -1,21 +1,21 @@
 BINARY_NAME := awesome-api
 LOG_FILE := awesome-api.log
 
-build: lint
+build: lint # Compile the source code of the application
 	go build -o $(BINARY_NAME)
 
-run: # Run the application in the background and write logs to a file
+run: # Run the application in the background
 	./$(BINARY_NAME) > $(LOG_FILE) 2>&1 &
 
-stop: # Stop the application by killing the process
+stop: # Stop the running application
 	-pkill -f $(BINARY_NAME)
 	sleep 1
 	-pgrep -f $(BINARY_NAME) | xargs -r kill -9
 
-clean: # Remove build artifacts
+clean: stop # Clean up the application
 	-rm -f $(BINARY_NAME) $(LOG_FILE)
 
-test: # Test the application by making requests to the server
+test: # Test the application
 	@./awesome-api > awesome-api.log 2>&1 & echo $$! > awesome-api.pid; \
 	sleep 1; \
 	if ! curl -s http://localhost:9999 | grep -q "404"; then \
@@ -43,4 +43,5 @@ help: # Display help information
 	@echo "  stop     : Stop the running application"
 	@echo "  clean    : Clean up the application"
 	@echo "  test     : Test the application"
-	@echo "  help     : Display this help message"
+	@echo "  help     : Display help information"
+	@echo "  lint     : Lint target"
