@@ -1,0 +1,21 @@
+name: module3_task0
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *' # Run once per day at midnight
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Validate Makefile
+        run: |
+          cd path/to/your/repo
+          make help
