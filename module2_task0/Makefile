@@ -26,9 +26,8 @@ test:
 	$(MAKE) run
 	sleep 2
 	@pkill $(BINARY_NAME)
-	@grep -q "TESTFAILED" $(LOG_FILE) && \
-	grep -q -e "TESTOK" -e "ALIVE" -e "404" $(LOG_FILE) && \
-	(echo "TESTFAILED" && exit 1) || true
+	@grep -q "TESTFAILED" $(LOG_FILE) || (echo "TESTFAILED" && exit 1)
+	@grep -q -e "ALIVE" -e "404" $(LOG_FILE) && (echo "TESTFAILED" && exit 1) || echo "TESTOK"
 
 .PHONY: help
 help:
