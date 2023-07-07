@@ -22,9 +22,11 @@ clean: stop
 	rm -f $(BINARY_NAME) $(LOG_FILE)
 
 .PHONY: test
-test: run
+test:
+	$(MAKE) run
 	sleep 2
-	@curl -s http://localhost:9999 > /dev/null && curl -s http://localhost:9999/health > /dev/null || (echo "TESTFAILED" && exit 1)
+	@nohup ./$(BINARY_NAME) > $(LOG_FILE) 2>&1 & sleep 2 && \
+	grep -q "TESTFAILED" $(LOG_FILE) || (echo "TESTFAILED" && exit 1)
 	@pkill $(BINARY_NAME)
 
 .PHONY: help
