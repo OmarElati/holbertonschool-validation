@@ -25,9 +25,9 @@ clean: stop
 test:
 	$(MAKE) run
 	sleep 2
+	@curl -s http://localhost:9999 > /dev/null && curl -s http://localhost:9999/health > /dev/null || (echo "TESTFAILED" && exit 1)
 	@pkill $(BINARY_NAME)
-	@grep -q "TESTFAILED" $(LOG_FILE) || (echo "TESTFAILED" && exit 1)
-	@grep -q -e "TESTOK" -e "ALIVE" -e "404" $(LOG_FILE) && (echo "TESTFAILED" && exit 1) || true
+	@grep -q -e "TESTFAILED" -e "TESTOK" -e "ALIVE" -e "404" $(LOG_FILE) && (echo "TESTFAILED" && exit 1) || true
 
 .PHONY: help
 help:
