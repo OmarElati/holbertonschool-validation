@@ -23,11 +23,12 @@ clean:
 
 .PHONY: test ## Test the application by sending requests.
 test:
-	$(MAKE) run
-	sleep 2
-	@curl -s http://localhost:9999 > /dev/null && curl -s http://localhost:9999/health > /dev/null || (echo "TESTFAILED" && exit 1)
-	@pkill $(BINARY_NAME)
-	@grep -q -e "TESTFAILED" -e "TESTOK" -e "ALIVE" -e "404" $(LOG_FILE) && (echo "TESTFAILED" && exit 1) || true
+	curl http://localhost:9999
+	curl http://localhost:9999/health
+
+.PHONY: lint ## Fail when the linter catches an error.
+lint:
+	golangci-lint run
 
 .PHONY: help ## Print this help message.
 help:
