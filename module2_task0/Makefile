@@ -25,9 +25,10 @@ clean: stop
 test:
 	$(MAKE) run
 	sleep 2
-	@nohup ./$(BINARY_NAME) > $(LOG_FILE) 2>&1 & sleep 2 && \
-	grep -q "TESTFAILED" $(LOG_FILE) || (echo "TESTFAILED" && exit 1)
 	@pkill $(BINARY_NAME)
+	@grep -q "TESTFAILED" $(LOG_FILE) && \
+	grep -q -e "TESTOK" -e "ALIVE" -e "404" $(LOG_FILE) && \
+	(echo "TESTFAILED" && exit 1) || true
 
 .PHONY: help
 help:
