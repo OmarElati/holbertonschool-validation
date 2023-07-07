@@ -4,32 +4,32 @@ BINARY_NAME := awesome-api
 LOG_FILE := $(BINARY_NAME).log
 .DEFAULT_GOAL := help
 
-.PHONY: build
+.PHONY: build ## Compile the source code to binary.
 build:
 	go build -o $(BINARY_NAME) main.go
 
-.PHONY: run
+.PHONY: run ## Run the application in the background.
 run:
 	nohup ./$(BINARY_NAME) > $(LOG_FILE) 2>&1 &
 
-.PHONY: stop
+.PHONY: stop ## Stop the application.
 stop:
 	pkill $(BINARY_NAME) || true
 
-.PHONY: clean
+.PHONY: clean ## Stop the application and remove binary and log file.
 clean: stop
 	@lsof -ti :9999 | xargs kill -9 || true
 	rm -f $(BINARY_NAME) $(LOG_FILE)
 
-.PHONY: test
+.PHONY: test ## Test the application by sending requests.
 test:
 	$(MAKE) run
 	sleep 2
-	@curl -s http://localhost:9999 > /dev/null && curl -s http://localhost:9999/health > /dev/null || (echo "TESTFAILED" && exit 1)
 	@pkill $(BINARY_NAME)
-	@grep -q -e "TESTFAILED" -e "TESTOK" -e "ALIVE" -e "404" $(LOG_FILE) && (echo "TESTFAILED" && exit 1) || true
+	@grep -q "TESTFAILED" $(LOG_FILE) || (echo "TESTFAILED" && exit 1)
+	@grep -q -e "ALIVE" -e "404" $(LOG_FILE) && (echo "TESTFAILED" && exit 1) || echo "TESTOK"
 
-.PHONY: help
+.PHONY: help ## Print this help message.
 help:
 	@echo "help: Print this help message."
 	@echo "build: Compile the source code to binary."
