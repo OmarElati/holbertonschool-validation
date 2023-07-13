@@ -31,36 +31,36 @@ func Test_server(t *testing.T) {
       responseCode: 200,
       body:         "Hello Holberton!",
     },
-	{
-		name:         "Health Check",
-		URI:          "/health?name=Alive",
-		responseCode: 200,
-		body:         "ALIVE",
-	  },
-	  {
-		name:         "Hello Page",
-		URI:          "/hello?name=there",
-		responseCode: 200,
-		body:         "Hello there!",
-	  },
-	  {
-		name:         "No name",
-		URI:          "/hello?name=",
-		responseCode: 400,
-		body:         "",
-	  },
-	  {
-		name:         "No Parameter",
-		URI:          "/hello?",
-		responseCode: 200,
-		body:         "Hello there!",
-	  },
-	}  
+    {
+      name:         "Health",
+      URI:          "/health?name=Alive",
+      responseCode: 200,
+      body:         "ALIVE",
+    },
+    {
+      name:         "There",
+      URI:          "/hello?name=there",
+      responseCode: 200,
+      body:         "Hello there!",
+    },
+    {
+      name:         "No name",
+      URI:          "/hello?name=",
+      responseCode: 400,
+      body:         "",
+    },
+    {
+      name:         "No Parameter",
+      URI:          "/hello?",
+      responseCode: 200,
+      body:         "Hello there!",
+    },
   }
 
   for _, tt := range tests {
     t.Run(tt.name, func(t *testing.T) {
       ts := httptest.NewServer(setupRouter())
+
       defer ts.Close()
 
       res, err := http.Get(ts.URL + tt.URI)
