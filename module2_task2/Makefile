@@ -1,6 +1,6 @@
 build:	## Compile source code of the application to a binary
 	golangci-lint run
-	go build
+	go build -o
 
 run:	## Run the application in background by executing the binary and write log into a file
 	./awesome-api >./awesome-api.log 2>&1 &
