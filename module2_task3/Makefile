@@ -1,6 +1,6 @@
 build:	## Compile source code of the application to a binary
 	golangci-lint run
-	go build -o awesome-api
+	go build
 
 run:	## Run the application in background by executing the binary and write log into a file
 	./awesome-api >./awesome-api.log 2>&1 &
@@ -13,8 +13,8 @@ clean:	## Stop the application and Delete the binary and log file
 	rm -f awesome-api awesome-api.log
 
 test:	## Test it to ensure that it behaves as expected
-	curl http://localhost:9999
-	curl http://localhost:9999/health
+	go test -v -short -coverprofile=coverage-units.out
+	go test -v -coverprofile=coverage-integrations.out
 
 lint:	## 	Fail when the linter catches and error
 	golangci-lint run
