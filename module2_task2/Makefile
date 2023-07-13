@@ -19,7 +19,7 @@ test:	## Test it to ensure that it behaves as expected
 lint:	## 	Fail when the linter catches and error
 	golangci-lint run
 
-unit-tests:		## Execute the Golang unit tests
+unit-tests:		## Execute (successfully) the Golang unit tests
 	go test -v -short -coverprofile=coverage-units.out
 
 help:	## Show this help .
