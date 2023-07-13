@@ -1,34 +1,22 @@
-BINARY_NAME := awesome-api
-LOG_FILE := $(BINARY_NAME).log
-.DEFAULT_GOAL := help
+build:	## Compile source code of the application to a binary
+	go build
 
-.PHONY: build
-build:
-	go build -o $(BINARY_NAME) main.go
+run:	## Run the application in background by executing the binary and write log into a file
+	./awesome-api >./awesome-api.log 2>&1 &
 
-.PHONY: run
-run:
-	nohup ./$(BINARY_NAME) > $(LOG_FILE) 2>&1 &
+stop:	## Stop the application with the command pkill
+	pkill awesome-api || true
 
-.PHONY: stop
-stop:
-	pkill $(BINARY_NAME) || true
+clean:	## Stop the application and Delete the binary and log file
+	pkill awesome-api || true
+	rm -rf awesome-api awesome-api.log
 
-.PHONY: clean
-clean: stop
-	@lsof -ti :9999 | xargs kill -9 || true
-	rm -f $(BINARY_NAME) $(LOG_FILE)
+test:	## Test it to ensure that it behaves as expected
+	curl http://localhost:9999
+	curl http://localhost:9999/health
 
-.PHONY: test
-test:
-	curl http://localhost:9999 || true
-	curl http://localhost:9999/health || true
+lint:	## 	Fail when the linter catches and error
+	golangci-lint run
 
-.PHONY: help
-help:
-	@echo "help: Print this help message."
-	@echo "build: Compile the source code to binary."
-	@echo "run: Run the application in the background."
-	@echo "stop: Stop the application."
-	@echo "clean: Stop the application and remove binary and log file."
-	@echo "test: Test the application by sending requests."
+help:	## Display this help message.
+	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
