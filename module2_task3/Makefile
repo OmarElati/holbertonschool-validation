@@ -10,7 +10,7 @@ stop:	## Stop the application with the command pkill
 
 clean:	## Stop the application and Delete the binary and log file
 	pkill awesome-api || true
-	rm -f awesome-api awesome-api.log
+	rm -f awesome-api awesome-api.log coverage-*
 
 test:	## Test it to ensure that it behaves as expected
 	go test -v -short -coverprofile=coverage-units.out
