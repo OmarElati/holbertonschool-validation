@@ -99,3 +99,26 @@ Serving pages from memory
 Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
 Web Server is available at http://localhost:34413/ (bind address localhost)
 Press Ctrl+C to stop
+port 9999 already in use, attempting to use an available port
+Start building sites … 
+hugo v0.92.2+extended linux/amd64 BuildDate=2023-01-31T11:11:57Z VendorInfo=ubuntu:0.92.2-1ubuntu0.1
+
+                   | EN  
+-------------------+-----
+  Pages            | 10  
+  Paginator pages  |  0  
+  Non-page files   |  0  
+  Static files     |  1  
+  Processed images |  0  
+  Aliases          |  1  
+  Sitemaps         |  1  
+  Cleaned          |  0  
+
+Built in 345 ms
+Watching for changes in /home/omar/holbertonschool-validation/module2_task5/{content,themes}
+Watching for config changes in /home/omar/holbertonschool-validation/module2_task5/config.toml, /home/omar/holbertonschool-validation/module2_task5/themes/ananke/config.yaml
+Environment: "development"
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:35439/ (bind address localhost)
+Press Ctrl+C to stop
