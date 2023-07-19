@@ -1,6 +1,4 @@
-build:  ## Generate the website from the markdown and configuration files in the directory dist/
-	markdownlint README.md content/posts/*
-	markdown-link-check README.md content/posts/*
+build: check  ## Generate the website from the markdown and configuration files in the directory dist/
 	hugo
 
 clean:	## Cleanup the content of the directory dist/
