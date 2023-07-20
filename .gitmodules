@@ -6,7 +6,7 @@
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke
 [submodule "themes/ananke"]
 	path = themes/ananke
-	url = https://github.com/theNewDynamic/gohugo-theme-ananke
+	url = https://github.com/OmarElati/gohugo-theme-ananke.git
 [submodule "module2_task4/themes/ananke"]
 	path = module2_task4/themes/ananke
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
