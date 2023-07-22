@@ -9,7 +9,10 @@ build:	## Generate the source code of the application to a binary.
 	$(HUGO)
 	$(MAKE) lint
 	$(GO) mod tidy
-	$(MAKE) check && $(HUGO) && $(GO) build -o $(TARGET)
+	$(MAKE) check
+
+	$(HUGO)
+	$(GO) build -o $(TARGET)
 
 run:	## Run the application in background by executing the binary.
 	./$(TARGET) >./$(TARGET).log 2>&1 &
